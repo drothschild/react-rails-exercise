@@ -6,9 +6,16 @@ class ProductTest < ActiveSupport::TestCase
         assert_not product.save
     end
 
-    test "should save product with a name" do       
+    test "should not save product without price" do       
         product = Product.new
         product.name = "test"
+        assert_not product.save
+    end
+
+    test "should save product with a name and a price" do      
+        product = Product.new
+        product.name = "test"
+        product.price = "1"
         assert product.save
     end
 
