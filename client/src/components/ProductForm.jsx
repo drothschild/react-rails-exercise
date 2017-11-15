@@ -12,15 +12,7 @@ const number = value =>
   value && isNaN(Number(value)) ? 'Must be a number' : undefined;
 const maxValue100 = maxValue(100);
 
-const renderField = ({ input, label, type, meta: { touched, error } }) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched && (error && <span>{error}</span>)}
-    </div>
-  </div>
-);
+
 
 const ProductForm = ({ handleSubmit, errors }) => (
   <div>
