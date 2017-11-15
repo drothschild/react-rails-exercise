@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { List } from 'material-ui/List';
-import { postProduct, requestProducts } from '../redux/actionCreators';
-import ProductForm from './ProductForm';
-import ProductListItem from './ProductListItem';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { List } from "material-ui/List";
+import { postProduct, requestProducts } from "../redux/actionCreators";
+import ProductForm from "./ProductForm";
+import ProductListItem from "./ProductListItem";
 
 const style = {
-  width: 400,
+  width: 400
 };
 class Products extends Component {
   componentDidMount() {
@@ -24,6 +24,7 @@ class Products extends Component {
       <div>
         <h1>Products</h1>
         <List style={style}>{productsList}</List>
+        <h3>New Product</h3>
         <ProductForm onSubmit={values => handleProductSubmit(values)} />
       </div>
     );
@@ -33,19 +34,19 @@ class Products extends Component {
 Products.propTypes = {
   isFetching: PropTypes.bool,
   products: PropTypes.array,
-  requestProducts: PropTypes.func,
+  requestProducts: PropTypes.func
 };
 
 Products.defaultProps = {
   isFetching: false,
   products: [],
-  requestProducts: () => '',
-  handleProductSubmit: () => '',
+  requestProducts: () => "",
+  handleProductSubmit: () => ""
 };
 
 const mapStateToProps = state => ({
   isFetching: state.isFetching,
-  products: state.products,
+  products: state.products
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -54,7 +55,7 @@ const mapDispatchToProps = dispatch => ({
   },
   handleProductSubmit(values) {
     dispatch(postProduct(values));
-  },
+  }
 });
 
 export const Unwrapped = Products;

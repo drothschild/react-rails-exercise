@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BrandSelectList from './BrandSelectList';
+import { renderTextField, renderSelectField } from './fields';
 
 const required = value => (value ? undefined : 'Required');
 const maxValue = max => value =>
@@ -26,39 +27,33 @@ const ProductForm = ({ handleSubmit, errors }) => (
     <form onSubmit={handleSubmit}>
       <div>
         <Field
-          component={renderField}
+          component={renderTextField}
           label="Name"
           name="name"
           type="text"
           validate={[required]}
         />
       </div>
+      <div />
       <div>
-        <label>Brand</label>
-        <div>
-          <Field
-            component="select"
-            name="brand_id"
-            label="Brand"
-            placeholder="Brand"
-          >
-            <option />
-            <BrandSelectList />
-          </Field>
-        </div>
+        <Field component="select" name="brand_id" label="Brand">
+          <option />
+          <BrandSelectList />
+        </Field>
       </div>
       <div>
         <Field
-          component="textarea"
+          component={renderTextField}
           name="description"
           label="Description"
-          placeholder="Description"
+          multiLine={true}
+          rows={2}
         />
       </div>
       <div>
         <Field
           label="Price"
-          component={renderField}
+          component={renderTextField}
           name="price"
           type="number"
           validate={[number, maxValue100]}

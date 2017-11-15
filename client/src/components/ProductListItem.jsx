@@ -16,7 +16,7 @@ class ProductLineItem extends Component {
     this.setState({ redirect: true });
   };
   render() {
-    const { name, id } = this.props;
+    const { name, id, deleteProduct } = this.props;
     if (this.state.redirect) {
       return <Redirect push to={`products/${id}`} />;
     }
@@ -24,9 +24,7 @@ class ProductLineItem extends Component {
       <Delete
         onClick={e => {
           e.stopPropagation();
-          if (window.confirm('Delete this product?')) {
-            this.props.deleteProduct(id);
-          }
+          deleteProduct(id);
         }}
       />
     );

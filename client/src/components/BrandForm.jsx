@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { renderTextField } from './fields';
+
 import {
   postBrand,
   setFormBrandName,
@@ -9,16 +11,6 @@ import {
 } from '../redux/actionCreators';
 
 const required = value => (value ? undefined : 'Required');
-
-const renderField = ({ input, label, type, meta: { touched, error } }) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched && (error && <span>{error}</span>)}
-    </div>
-  </div>
-);
 
 class BrandForm extends Component {
   handleSubmit(e) {
@@ -38,18 +30,17 @@ class BrandForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>
-            Name
-            <Field
-              name="name"
-              type="text"
-              component={renderField}
-              value={formBrandName}
-              onChange={setName}
-              validate={[required]}
-            />
+          <Field
+            name="name"
+            label="Name"
+            component={renderTextField}
+            value={formBrandName}
+            onChange={setName}
+            validate={[required]}
+          />
+          <div>
             <input type="submit" value="Submit" />
-          </label>
+          </div>
         </form>
         {errorList}
       </div>
