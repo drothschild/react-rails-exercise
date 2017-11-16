@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BrandSelectList from './BrandSelectList';
-import { renderTextField, renderSelectField } from './fields';
+import { renderTextField } from './fields';
 
 const required = value => (value ? undefined : 'Required');
 const maxValue = max => value =>
